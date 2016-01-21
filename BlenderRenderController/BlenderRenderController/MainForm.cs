@@ -13,10 +13,11 @@ namespace BlenderRenderController
 {
     public partial class MainForm : Form
     {
-        string blendFilePath = "";
-        string outFolderPath = "";
+        string blendFilePath;
+        string outFolderPath;
 
-        int runningRenderProcessCount = 0;
+        Timer renderAllTimer;
+        int runningRenderProcessCount;
 
         public MainForm()
         {
@@ -25,7 +26,14 @@ namespace BlenderRenderController
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            blendFilePath = "";
+            outFolderPath = "";
 
+            renderAllTimer = new Timer();
+            renderAllTimer.Interval = 2500;
+            renderAllTimer.Tick += new EventHandler(updateProcessManagement);
+
+            runningRenderProcessCount = 0;
         }
 
         private void blendFileBrowseButton_Click(object sender, EventArgs e)
@@ -74,12 +82,12 @@ namespace BlenderRenderController
             p.Exited += new EventHandler(chunk_Finished);
 
             p.Start();
+            runningRenderProcessCount++;
         }
 
         private void chunk_Finished(object sender, EventArgs e)
         {
             runningRenderProcessCount--;
-            updateProcessManagement();
         }
 
         private void prevChunkButton_Click(object sender, EventArgs e)
@@ -115,19 +123,24 @@ namespace BlenderRenderController
 
         private void renderAllButton_Click(object sender, EventArgs e)
         {
-            updateProcessManagement();
+            renderAllTimer.Enabled = !renderAllTimer.Enabled;
+            renderAllButton.Text = renderAllTimer.Enabled ? "Stop" : "Render all";
         }
 
-        private void updateProcessManagement()
+        private void updateProcessManagement(object sender, EventArgs e)
         {
+            if (!(startFrameNumericUpDown.Value < totalFrameCountNumericUpDown.Value))
+            {
+                renderAllButton_Click(sender, e);
+                return;
+            }
+
             renderProgressBar.Value = (int)(endFrameNumericUpDown.Value / totalFrameCountNumericUpDown.Value) * 100;
 
-            if (runningRenderProcessCount < processCountNumericUpDown.Value && endFrameNumericUpDown.Value < totalFrameCountNumericUpDown.Value)
+            if (runningRenderProcessCount < processCountNumericUpDown.Value)
             {
                 renderSegmentButton_Click(null, EventArgs.Empty);
-                runningRenderProcessCount++;
                 nextChunkButton_Click(null, EventArgs.Empty);
-                updateProcessManagement();
             }
         }
     }
