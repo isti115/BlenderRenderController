@@ -16,6 +16,8 @@ namespace BlenderRenderController
         string blendFilePath = "";
         string outFolderPath = "";
 
+        int runningRenderProcessCount = 0;
+
         public MainForm()
         {
             InitializeComponent();
@@ -54,7 +56,7 @@ namespace BlenderRenderController
             }
         }
 
-        private void renderButton_Click(object sender, EventArgs e)
+        private void renderSegmentButton_Click(object sender, EventArgs e)
         {
             Process p = new Process();
 
@@ -63,7 +65,8 @@ namespace BlenderRenderController
 
             p.StartInfo.Arguments = String.Format("-b \"{0}\" -E {1} -s {2} -e {3} -a",
                                                   blendFilePathTextBox.Text,
-                                                  rendererComboBox.Text, 
+                                                  rendererComboBox.Text,
+                                                  //"BLENDER_RENDER",
                                                   startFrameNumericUpDown.Value, 
                                                   endFrameNumericUpDown.Value);
 
@@ -75,7 +78,8 @@ namespace BlenderRenderController
 
         private void chunk_Finished(object sender, EventArgs e)
         {
-            MessageBox.Show("finished");
+            runningRenderProcessCount--;
+            updateProcessManagement();
         }
 
         private void prevChunkButton_Click(object sender, EventArgs e)
@@ -98,7 +102,33 @@ namespace BlenderRenderController
         {
             var difference = endFrameNumericUpDown.Value - startFrameNumericUpDown.Value;
             startFrameNumericUpDown.Value = endFrameNumericUpDown.Value + 1;
-            endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + difference;
+
+            if (endFrameNumericUpDown.Value + difference + 1 > totalFrameCountNumericUpDown.Value)
+            {
+                endFrameNumericUpDown.Value = totalFrameCountNumericUpDown.Value;
+            }
+            else
+            {
+                endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + difference;
+            }
+        }
+
+        private void renderAllButton_Click(object sender, EventArgs e)
+        {
+            updateProcessManagement();
+        }
+
+        private void updateProcessManagement()
+        {
+            renderProgressBar.Value = (int)(endFrameNumericUpDown.Value / totalFrameCountNumericUpDown.Value) * 100;
+
+            if (runningRenderProcessCount < processCountNumericUpDown.Value && endFrameNumericUpDown.Value < totalFrameCountNumericUpDown.Value)
+            {
+                renderSegmentButton_Click(null, EventArgs.Empty);
+                runningRenderProcessCount++;
+                nextChunkButton_Click(null, EventArgs.Empty);
+                updateProcessManagement();
+            }
         }
     }
 }
