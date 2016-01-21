@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -62,6 +63,11 @@ namespace BlenderRenderController
                 outFolderPath = outFolderBrowseDialog.SelectedPath;
                 outFolderPathTextBox.Text = outFolderPath;
             }
+        }
+
+        private void outFolderPathTextBox_TextChanged(object sender, EventArgs e)
+        {
+            outFolderPath = outFolderPathTextBox.Text;
         }
 
         private void renderSegmentButton_Click(object sender, EventArgs e)
@@ -135,13 +141,37 @@ namespace BlenderRenderController
                 return;
             }
 
-            renderProgressBar.Value = (int)(endFrameNumericUpDown.Value / totalFrameCountNumericUpDown.Value) * 100;
+            renderProgressBar.Value = (int)((endFrameNumericUpDown.Value / totalFrameCountNumericUpDown.Value) * 100);
 
             if (runningRenderProcessCount < processCountNumericUpDown.Value)
             {
                 renderSegmentButton_Click(null, EventArgs.Empty);
                 nextChunkButton_Click(null, EventArgs.Empty);
             }
+        }
+
+        private void concatenatePartsButton_Click(object sender, EventArgs e)
+        {
+            string[] partList = Directory.GetFiles(outFolderPath, "*.mp4");
+            StreamWriter partListWriter = new StreamWriter(outFolderPath + "\\partList.txt");
+
+            foreach (var currentPart in partList)
+            {
+                partListWriter.WriteLine("file '{0}'", currentPart);
+            }
+
+            partListWriter.Close();
+
+
+            Process p = new Process();
+
+            p.StartInfo.WorkingDirectory = outFolderPath;
+            p.StartInfo.FileName = "ffmpeg";
+
+            p.StartInfo.Arguments = "-f concat -i partList.txt -c copy ../output.mp4";
+            
+
+            p.Start();
         }
     }
 }

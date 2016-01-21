@@ -50,6 +50,7 @@
             this.processCountNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.processCountLabel = new System.Windows.Forms.Label();
             this.renderAllButton = new System.Windows.Forms.Button();
+            this.concatenatePartsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).BeginInit();
@@ -187,6 +188,7 @@
             this.outFolderPathTextBox.Name = "outFolderPathTextBox";
             this.outFolderPathTextBox.Size = new System.Drawing.Size(291, 20);
             this.outFolderPathTextBox.TabIndex = 3;
+            this.outFolderPathTextBox.TextChanged += new System.EventHandler(this.outFolderPathTextBox_TextChanged);
             // 
             // outFolderLabel
             // 
@@ -314,11 +316,23 @@
             this.renderAllButton.UseVisualStyleBackColor = true;
             this.renderAllButton.Click += new System.EventHandler(this.renderAllButton_Click);
             // 
+            // concatenatePartsButton
+            // 
+            this.concatenatePartsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.concatenatePartsButton.Location = new System.Drawing.Point(256, 114);
+            this.concatenatePartsButton.Name = "concatenatePartsButton";
+            this.concatenatePartsButton.Size = new System.Drawing.Size(114, 23);
+            this.concatenatePartsButton.TabIndex = 16;
+            this.concatenatePartsButton.Text = "Concatenate parts";
+            this.concatenatePartsButton.UseVisualStyleBackColor = true;
+            this.concatenatePartsButton.Click += new System.EventHandler(this.concatenatePartsButton_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(464, 241);
+            this.Controls.Add(this.concatenatePartsButton);
             this.Controls.Add(this.processCountLabel);
             this.Controls.Add(this.processCountNumericUpDown);
             this.Controls.Add(this.totalFrameCountLabel);
@@ -378,6 +392,7 @@
         private System.Windows.Forms.NumericUpDown processCountNumericUpDown;
         private System.Windows.Forms.Label processCountLabel;
         private System.Windows.Forms.Button renderAllButton;
+        private System.Windows.Forms.Button concatenatePartsButton;
     }
 }
 
