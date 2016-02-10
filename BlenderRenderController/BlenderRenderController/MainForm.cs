@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -155,7 +156,11 @@ namespace BlenderRenderController
             string[] partList = Directory.GetFiles(outFolderPath, "*.mp4");
             StreamWriter partListWriter = new StreamWriter(outFolderPath + "\\partList.txt");
 
-            foreach (var currentPart in partList)
+            List<string> stringPartList = partList.ToList();
+
+            stringPartList.Sort(compareParts);
+
+            foreach (var currentPart in stringPartList)
             {
                 partListWriter.WriteLine("file '{0}'", currentPart);
             }
@@ -170,8 +175,17 @@ namespace BlenderRenderController
 
             p.StartInfo.Arguments = "-f concat -i partList.txt -c copy ../output.mp4";
             
-
             p.Start();
+        }
+
+        public int compareParts(string a, string b)
+        {
+            Regex pattern = new Regex(@"-(.*)\.mp4");
+
+            int aEnd = Convert.ToInt32(pattern.Match(a).Groups[1].Value);
+            int bEnd = Convert.ToInt32(pattern.Match(b).Groups[1].Value);
+
+            return aEnd.CompareTo(bEnd);
         }
     }
 }
