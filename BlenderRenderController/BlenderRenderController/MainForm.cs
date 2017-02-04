@@ -474,7 +474,7 @@ namespace BlenderRenderController
 
             if (input == -1)
             {
-                message = "Output file path empty, please set a valid output path in project";
+                message = "Output file path empty, please set a valid path in project";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return -1;
             }
