@@ -28,12 +28,27 @@ namespace BlenderRenderController
         Timer renderAllTimer;
         int runningRenderProcessCount;
 
-		public class BlenderData {
+        int ErrorCode;
+        string AltDir;
+        // Lenth of segments, TEST
+        int SeqFrame = 1000;
+
+        public class BlenderData {
 			public int    StartFrame;
 			public int    EndFrame;
 			public string OutputDirectory;
 			public string ProjectName;
-		}
+            // new
+            public string NumScenes;
+            public string ActiveScene;
+            public string AltDir;
+            public int ErrorCode;
+            //public int SegFrame = 1000;
+        }
+
+
+        string[] args = Environment.GetCommandLineArgs();
+
 
         public MainForm()
         {
@@ -47,8 +62,30 @@ namespace BlenderRenderController
 
         }
 
+        // Deletes json on form close
+        private void MainForm_Close(object sender, FormClosedEventArgs e)
+        {
+            jsonDel();
+        }
+
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // Arguments
+            if (args.Length > 1)
+            {
+                //test arguments
+                //for (int i = 0; i < args.Length; i++)
+                //{
+                //    string teste = string.Format("Arg[{0}] = [{1}] \r\n", i, args[i]);
+                //    MessageBox.Show(teste);
+                //}
+
+                // arg 1 = .blend path
+                blendFilePath = args[1];
+                blendFilePathTextBox.Text = blendFilePath;
+                DoReadBlenderData();
+            }
+
             blendFilePath = "";
             outFolderPath = "";
 
@@ -75,24 +112,23 @@ namespace BlenderRenderController
 
         }
 
-        private void outFolderBrowseButton_Click(object sender, EventArgs e)
+        private void partsFolderBrowseButton_Click(object sender, EventArgs e)
         {
-            var outFolderBrowseDialog = new FolderBrowserDialog();
+            var partsFolderBrowseDialog = new FolderBrowserDialog();
             //outFileBrowseDialog.Filter = "Blend|*.blend";
 
-            var result = outFolderBrowseDialog.ShowDialog();
+            var result = partsFolderBrowseDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                outFolderPath = outFolderBrowseDialog.SelectedPath;
-                outFolderPathTextBox.Text = outFolderPath;
+                outFolderPath = partsFolderBrowseDialog.SelectedPath;
+                partsFolderPathTextBox.Text = outFolderPath;
             }
-
         }
 
         private void outFolderPathTextBox_TextChanged(object sender, EventArgs e)
         {
-            outFolderPath = outFolderPathTextBox.Text;
+            outFolderPath = partsFolderPathTextBox.Text;
         }
 
         private void renderSegmentButton_Click(object sender, EventArgs e)
@@ -129,7 +165,8 @@ namespace BlenderRenderController
         private void prevChunkButton_Click(object sender, EventArgs e)
         {
             var difference = endFrameNumericUpDown.Value - startFrameNumericUpDown.Value;
-
+            //difference = SegFrame;
+            //var step =  endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + SegFrame;
             if (startFrameNumericUpDown.Value - difference < 1)
             {
                 startFrameNumericUpDown.Value = 1;
@@ -211,49 +248,67 @@ namespace BlenderRenderController
 
         private void concatenatePartsButton_Click(object sender, EventArgs e)
         {
-            StreamWriter partListWriter = new StreamWriter(outFolderPath + "\\partList.txt");
-			string       fileExtension  = "mp4";
-			List<string> stringPartList = findFiles( outFolderPath, "*.mp4" );
-			string       audioFile      = Path.GetFileNameWithoutExtension( blendFilePathTextBox.Text );
-			string       audioSettings  = string.Empty;//"-c:a aac -b:a 256k";
+            string ffmpeg_dir;
+            if (ajustOutDir.Checked == true)
+            {
+                ffmpeg_dir = AltDir;
+            }
+            else
+            {
+                ffmpeg_dir = outFolderPath;
+            }
+            if (!Directory.Exists(ffmpeg_dir))
+            {
+                errorMsgs(-100);
+                return;
+            }
 
-			//Fall back to seraching for .avi files instead
-			if( stringPartList == null || stringPartList.Count == 0 ) {
-				stringPartList = findFiles( outFolderPath, "*.avi" );
-				fileExtension = "avi";
-			}
+            StreamWriter partListWriter = new StreamWriter(ffmpeg_dir + "\\partList.txt");
+            List<string> stringPartList = findFiles(ffmpeg_dir, "*.avi");
+            string fileExtension = "avi";
+            string audioFile = Path.GetFileNameWithoutExtension(blendFilePathTextBox.Text);
+            string audioSettings = string.Empty;//"-c:a aac -b:a 256k";
 
-			if( File.Exists( Path.Combine( outFolderPath, audioFile + ".ac3" ) ) ) {
-				audioFile = " -i " + audioFile + ".ac3";
-			}
-			else {
-				audioFile     = string.Empty;
-				audioSettings = string.Empty;
-			}
+            if (stringPartList == null || stringPartList.Count == 0)
+            {
+                stringPartList = findFiles(ffmpeg_dir, "*.mp4");
+                fileExtension = "mp4";
+            }
+
+            if (File.Exists(Path.Combine(ffmpeg_dir, audioFile + ".ac3")))
+            {
+                audioFile = " -i " + audioFile + ".ac3";
+            }
+            else
+            {
+                audioFile = string.Empty;
+                audioSettings = string.Empty;
+            }
 
             stringPartList.Sort(compareParts);
 
             foreach (var currentPart in stringPartList)
             {
-                partListWriter.WriteLine("file '{0}'", Path.GetFileName( currentPart ) );
+                partListWriter.WriteLine("file '{0}'", Path.GetFileName(currentPart));
             }
 
             partListWriter.Close();
 
 
             Process p = new Process();
-
-            p.StartInfo.WorkingDirectory = outFolderPath;
-            p.StartInfo.FileName = "ffmpeg";
-			p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
-
-			p.StartInfo.Arguments = String.Format( "-f concat -i partList.txt {0} -c:v copy {1} concat_output.{2}",
-												   audioFile,
-												   audioSettings,
-												   fileExtension
-								    );
             
-			p.Start();
+            p.StartInfo.WorkingDirectory = ffmpeg_dir;
+            //p.StartInfo.WorkingDirectory = AltDir;
+            p.StartInfo.FileName = "ffmpeg";
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+
+            p.StartInfo.Arguments = String.Format("-f concat -i partList.txt {0} -c:v copy {1} concat_output.{2}",
+                                                   audioFile,
+                                                   audioSettings,
+                                                   fileExtension
+                                    );
+
+            p.Start();
 
         }
 
@@ -269,14 +324,24 @@ namespace BlenderRenderController
 
 		private void DoReadBlenderData() {
 
-			if( !File.Exists( blendFilePathTextBox.Text ) ) {
-				return;
+            if ( !File.Exists( blendFilePathTextBox.Text ) ) {
+                // file does not exist
+                errorMsgs(-104);
+                return;
 			}
 
+            if (!Directory.Exists(ScriptsPath))
+            {
+                // Error scriptsfolder not found
+                string caption = "Error";
+                string message = "Scripts folder not found";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             Process p = new Process();
-
             //p.StartInfo.WorkingDirectory     = outFolderPath;
-
+            p.StartInfo.WorkingDirectory       = ScriptsPath;
             p.StartInfo.FileName               = "blender";
 			p.StartInfo.RedirectStandardOutput = true;
 			p.StartInfo.CreateNoWindow         = true;
@@ -293,12 +358,12 @@ namespace BlenderRenderController
 			catch( Exception ex ) {
 				Trace.WriteLine( ex );
 			}
-
+            
 			StringBuilder jsonInfo    = new StringBuilder();
 			bool          jsonStarted = false;
 			int           curlyStack  = 0;
 
-			while( !p.StandardOutput.EndOfStream ) {
+            while ( !p.StandardOutput.EndOfStream ) {
 				string line = p.StandardOutput.ReadLine();
 
 				if( line.Contains( "{" ) ) {
@@ -333,60 +398,246 @@ namespace BlenderRenderController
 			}
 
 			if( blendData != null ) {
-				startFrameNumericUpDown.Value      = blendData.StartFrame;
-				totalFrameCountNumericUpDown.Value = blendData.EndFrame;
-				outFolderPathTextBox.Text          = outFolderPath = blendData.OutputDirectory;
-				//blendProjectName                   = blendData.ProjectName;
 
-				if( blendData.EndFrame < endFrameNumericUpDown.Value ) {
+                startFrameNumericUpDown.Value      = blendData.StartFrame;
+				totalFrameCountNumericUpDown.Value = blendData.EndFrame;
+
+                //endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + endFrameNumericUpDown.Value;
+
+                // Remove last bit from file path, if checked
+                if (ajustOutDir.Checked == true)
+                {
+                    partsFolderPathTextBox.Text = blendData.AltDir;
+                }
+                else
+                {
+                    partsFolderPathTextBox.Text = outFolderPath = blendData.OutputDirectory;
+                }
+
+                outFolderPathTextBox.Text          = outFolderPath = blendData.OutputDirectory;
+                infoActiveScene.Text               = blendData.ActiveScene;
+                infoNoScenes.Text                  = blendData.NumScenes;
+                AltDir                             = blendData.AltDir;
+                ErrorCode                          = blendData.ErrorCode;
+                //blendProjectName                   = blendData.ProjectName;
+
+                if ( blendData.EndFrame < endFrameNumericUpDown.Value ) {
 					endFrameNumericUpDown.Value = blendData.EndFrame;
 				}
 
 			}
+            // Error checker
+            errorMsgs(ErrorCode);
 
-			Trace.WriteLine( "Json data = " + jsonInfo.ToString() );
+            //outFolderPathTextBox.Text = string.Empty;
+
+            Trace.WriteLine( "Json data = " + jsonInfo.ToString() );
 
 			//Trace.WriteLine( String.Format( "CEW: {0}", p.StartInfo.Arguments ) );
 
 		}
 
+        /// <summary>
+        /// Error central, displays message and does actions
+        /// according to given code, return's int equal to 
+        /// error code
+        /// </summary>
+        /// <param name="er"></param>
+        /// <returns>same as er</returns>
+        int errorMsgs(int er)
+        {
+            int input = er;
+
+            // Actions
+
+            // disable buttons if invalid
+            var invalid_list = new List<int> { -1, -2, -3, -104 };
+            var isbad = invalid_list.Contains(input);
+            if (isbad == true)
+            {
+                renderAllButton.Enabled = false;
+                renderSegmentButton.Enabled = false;
+                concatenatePartsButton.Enabled = false;
+                MixdownAudio.Enabled = false;
+            }
+            else
+            {
+                renderAllButton.Enabled = true;
+                renderSegmentButton.Enabled = true;
+                concatenatePartsButton.Enabled = true;
+                MixdownAudio.Enabled = true;
+            }
+
+            // Messages
+            string message;
+            string caption = string.Format("Error ({0})", input);
+
+            if (input == -1)
+            {
+                message = "Output file path empty, please set a valid output path in project";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -1;
+            }
+            else if (input == -2)
+            {
+                message = "Invalid Output path";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -2;
+            }
+            else if (input == -3)
+            {
+                message = "Output path is relative, you MUST use absolute paths ONLY";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -3;
+            }
+            else if (input == -100)
+            {
+                message = "FFmpeg can't find working folder";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -100;
+            }
+            else if (input == -104)
+            {
+                message = "Invalid project";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return -104;
+            }
+            else
+            {
+                // no problems, don't show error message
+                return 0;
+            }
+            
+        }
+
 		private void ReadBlenderData_Click( object sender, EventArgs e ) {
-			DoReadBlenderData();
+
+            DoReadBlenderData();
 		}
 
-		private void MixdownAudio_Click( object sender, EventArgs e ) {
+        private void MixdownAudio_Click(object sender, EventArgs e) {
 
-			if( !File.Exists( blendFilePathTextBox.Text ) ) {
-				return;
-			}
+            if (!File.Exists(blendFilePathTextBox.Text)) {
+                return;
+            }
 
-			if( !Directory.Exists( outFolderPathTextBox.Text ) ) {
-				Directory.CreateDirectory( outFolderPathTextBox.Text );
-			}
+            if (!Directory.Exists(ScriptsPath))
+            {
+                // Error scriptsfolder not found
+                string caption = "Error";
+                string message = "Scripts folder not found";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+
+            if (!Directory.Exists(partsFolderPathTextBox.Text)) {
+                Directory.CreateDirectory(partsFolderPathTextBox.Text);
+            }
 
             Process p = new Process();
 
-            p.StartInfo.FileName               = "blender";
-			p.StartInfo.RedirectStandardOutput = true;
-			p.StartInfo.UseShellExecute        = false;
-			//Using minimized instead so we get feedback
-			//p.StartInfo.CreateNoWindow         = true;
-			p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            p.StartInfo.FileName = "blender";
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.UseShellExecute = false;
+            //Using minimized instead so we get feedback
+            //p.StartInfo.CreateNoWindow         = true;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
 
             p.StartInfo.Arguments = String.Format("-b \"{0}\" -P \"{1}\"",
                                                   blendFilePathTextBox.Text,
                                                   Path.Combine(ScriptsPath, "mixdown_audio.py")
                                     );
 
-			p.Start();
+            p.Start();
 
-			p.WaitForExit((int)TimeSpan.FromMinutes(5).TotalMilliseconds);
+            p.WaitForExit((int)TimeSpan.FromMinutes(5).TotalMilliseconds);
 
-			Trace.WriteLine("MixDown Completed");
+            Trace.WriteLine("MixDown Completed");
 
 
-		}
+        }
 
+        /* About this app
+        private void creditsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.Show();
+        }
+        */
+
+        private void tipsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // show / hide tooltips
+            if (tipsToolStripMenuItem.Checked == false)
+            {
+                activeWarn.Active = false;
+                toolTip1.Active = false;
+                //toolTip.Active = false;
+            }
+            else if (tipsToolStripMenuItem.Checked == true)
+            {
+                activeWarn.Active = true;
+                toolTip1.Active = true;
+            }
+
+        }
+
+        private void visitGithubToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //Process.Start("https://github.com/Isti115/BlenderRenderController");
+            Process.Start("https://github.com/RedRaptor93/BlenderRenderController");
+        }
+
+        private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            json_info op = new json_info();
+            op.Show();
+        }
+
+        private void ajustOutDir_CheckedChanged(object sender, EventArgs e)
+        {
+            DoReadBlenderData();
+        }
+
+        // DEBUG OPTIONS
+        private void debugMenuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (debugShow.Checked == false)
+            {
+                debugToolStripMenuItem.Visible = false;
+            }
+            else if (debugShow.Checked == true)
+            {
+                debugToolStripMenuItem.Visible = true;
+            }
+        }
+
+        void jsonDel()
+        {
+            // delete json
+            string jsonfile = Path.Combine(ScriptsPath, "blend_info.json");
+            if (File.Exists(jsonfile))
+            {
+                File.Delete(jsonfile);
+                //MessageBox.Show("Json deleted", "Ok");
+            }
+            else
+            {
+                //MessageBox.Show("Json not found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+        }
+
+        private void deleteJsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            jsonDel();
+        }
+
+        private void endFrameNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-
 }

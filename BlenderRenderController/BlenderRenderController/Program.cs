@@ -18,5 +18,11 @@ namespace BlenderRenderController
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
         }
-    }
+
+        //string[] Args = Environment.GetCommandLineArgs();
+        //public static class ArgHolder
+        //{
+        //    public static Args { get; set; }
+        //}
+}
 }
