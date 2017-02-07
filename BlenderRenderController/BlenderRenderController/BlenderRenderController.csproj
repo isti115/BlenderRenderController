@@ -115,7 +115,6 @@
   <ItemGroup>
     <Content Include="bkp.txt" />
     <Content Include="resources\blender-icon.ico" />
-    <Content Include="resources\Blender1.ico" />
     <Content Include="resources\icon.txt" />
     <Content Include="Scripts\get_project_info.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
