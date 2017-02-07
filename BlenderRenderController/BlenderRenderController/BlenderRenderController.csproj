@@ -113,7 +113,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="bkp.txt" />
+    <None Include="bkp.txt" />
     <Content Include="resources\blender-icon.ico" />
     <Content Include="resources\icon.txt" />
     <Content Include="Scripts\get_project_info.py">
