@@ -87,6 +87,7 @@
             this.line2 = new System.Windows.Forms.Label();
             this.meTwentyFiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.redRaptor93ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeAudio = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).BeginInit();
@@ -376,9 +377,9 @@
             // 
             this.concatenatePartsButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.concatenatePartsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.concatenatePartsButton.Location = new System.Drawing.Point(501, 472);
+            this.concatenatePartsButton.Location = new System.Drawing.Point(276, 459);
             this.concatenatePartsButton.Name = "concatenatePartsButton";
-            this.concatenatePartsButton.Size = new System.Drawing.Size(139, 38);
+            this.concatenatePartsButton.Size = new System.Drawing.Size(146, 51);
             this.concatenatePartsButton.TabIndex = 16;
             this.concatenatePartsButton.Text = "Concatenate parts";
             this.toolTip1.SetToolTip(this.concatenatePartsButton, "Combine segments in FFmpeg");
@@ -401,11 +402,11 @@
             // 
             this.MixdownAudio.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.MixdownAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.MixdownAudio.Location = new System.Drawing.Point(384, 474);
+            this.MixdownAudio.Location = new System.Drawing.Point(428, 459);
             this.MixdownAudio.Name = "MixdownAudio";
-            this.MixdownAudio.Size = new System.Drawing.Size(99, 36);
+            this.MixdownAudio.Size = new System.Drawing.Size(101, 51);
             this.MixdownAudio.TabIndex = 18;
-            this.MixdownAudio.Text = "MixDown";
+            this.MixdownAudio.Text = "MixDown audio";
             this.MixdownAudio.UseVisualStyleBackColor = true;
             this.MixdownAudio.Click += new System.EventHandler(this.MixdownAudio_Click);
             // 
@@ -453,7 +454,7 @@
             this.tipsToolStripMenuItem.CheckOnClick = true;
             this.tipsToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tipsToolStripMenuItem.Name = "tipsToolStripMenuItem";
-            this.tipsToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.tipsToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.tipsToolStripMenuItem.Text = "Tooltips";
             this.tipsToolStripMenuItem.Click += new System.EventHandler(this.tipsToolStripMenuItem_Click);
             // 
@@ -461,7 +462,7 @@
             // 
             this.autocombineToolStripMenuItem.CheckOnClick = true;
             this.autocombineToolStripMenuItem.Name = "autocombineToolStripMenuItem";
-            this.autocombineToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.autocombineToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.autocombineToolStripMenuItem.Text = "Auto-combine";
             this.autocombineToolStripMenuItem.ToolTipText = "Automatically combine parts when clicking \"Render all\"";
             this.autocombineToolStripMenuItem.Visible = false;
@@ -470,14 +471,14 @@
             // 
             this.debugShow.CheckOnClick = true;
             this.debugShow.Name = "debugShow";
-            this.debugShow.Size = new System.Drawing.Size(164, 22);
+            this.debugShow.Size = new System.Drawing.Size(166, 22);
             this.debugShow.Text = "Debug menu";
             this.debugShow.Click += new System.EventHandler(this.debugMenuToolStripMenuItem_Click);
             // 
             // speToolStripMenuItem
             // 
             this.speToolStripMenuItem.Name = "speToolStripMenuItem";
-            this.speToolStripMenuItem.Size = new System.Drawing.Size(161, 6);
+            this.speToolStripMenuItem.Size = new System.Drawing.Size(163, 6);
             // 
             // visitGithubPageToolStripMenuItem
             // 
@@ -488,8 +489,8 @@
             this.visitGithubPageToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.visitGithubPageToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.visitGithubPageToolStripMenuItem.Name = "visitGithubPageToolStripMenuItem";
-            this.visitGithubPageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.visitGithubPageToolStripMenuItem.Text = "Visit Github page";
+            this.visitGithubPageToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.visitGithubPageToolStripMenuItem.Text = "Visit GitHub page";
             // 
             // isti115ToolStripMenuItem
             // 
@@ -745,8 +746,21 @@
             this.redRaptor93ToolStripMenuItem.Text = "RedRaptor93";
             this.redRaptor93ToolStripMenuItem.Click += new System.EventHandler(this.redRaptor93ToolStripMenuItem_Click);
             // 
+            // mergeAudio
+            // 
+            this.mergeAudio.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mergeAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
+            this.mergeAudio.Location = new System.Drawing.Point(535, 459);
+            this.mergeAudio.Name = "mergeAudio";
+            this.mergeAudio.Size = new System.Drawing.Size(101, 51);
+            this.mergeAudio.TabIndex = 18;
+            this.mergeAudio.Text = "Merge audio";
+            this.mergeAudio.UseVisualStyleBackColor = true;
+            this.mergeAudio.Click += new System.EventHandler(this.mergeAudio_Click);
+            // 
             // MainForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(655, 522);
@@ -758,6 +772,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.infoPanel);
             this.Controls.Add(this.TotalTime);
+            this.Controls.Add(this.mergeAudio);
             this.Controls.Add(this.MixdownAudio);
             this.Controls.Add(this.ReadBlenderData);
             this.Controls.Add(this.concatenatePartsButton);
@@ -792,6 +807,8 @@
             this.Text = "Blender Render Controller";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_Close);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).EndInit();
@@ -864,6 +881,7 @@
         private System.Windows.Forms.ToolStripMenuItem isti115ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem meTwentyFiveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem redRaptor93ToolStripMenuItem;
+        private System.Windows.Forms.Button mergeAudio;
     }
 }
 

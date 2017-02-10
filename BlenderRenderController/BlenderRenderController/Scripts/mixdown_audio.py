@@ -15,11 +15,11 @@ outputPath = bpy.data.scenes[ActiveScene].render.filepath
 
 #outputPath = bpy.data.scenes["Scene"].render.filepath
 
-bpy.ops.sound.mixdown( filepath=outputPath + "\\" + projName + ".ac3",
-		               container='AC3',
-					   codec='AC3',
+bpy.ops.sound.mixdown( filepath=outputPath + "\\audio.mp3",
+		               container='MP3',
+					   codec='MP3',
 					   accuracy=1024,
-					   bitrate=512,
+					   bitrate=256,
 					   format="F32",
 					   split_channels=False);
 
