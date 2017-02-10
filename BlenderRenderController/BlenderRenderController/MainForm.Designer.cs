@@ -62,12 +62,14 @@
             this.autocombineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugShow = new System.Windows.Forms.ToolStripMenuItem();
             this.speToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            this.visitGithubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visitGithubPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isti115ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readmeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMDArgsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.infoPanel = new System.Windows.Forms.Panel();
             this.outFolderPathTextBox = new System.Windows.Forms.TextBox();
@@ -83,7 +85,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.line = new System.Windows.Forms.Label();
             this.line2 = new System.Windows.Forms.Label();
-            this.cMDArgsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meTwentyFiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redRaptor93ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).BeginInit();
@@ -437,7 +440,7 @@
             this.autocombineToolStripMenuItem,
             this.debugShow,
             this.speToolStripMenuItem,
-            this.visitGithubToolStripMenuItem});
+            this.visitGithubPageToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.aboutToolStripMenuItem.Text = "Options";
@@ -476,14 +479,26 @@
             this.speToolStripMenuItem.Name = "speToolStripMenuItem";
             this.speToolStripMenuItem.Size = new System.Drawing.Size(161, 6);
             // 
-            // visitGithubToolStripMenuItem
+            // visitGithubPageToolStripMenuItem
             // 
-            this.visitGithubToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline);
-            this.visitGithubToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.visitGithubToolStripMenuItem.Name = "visitGithubToolStripMenuItem";
-            this.visitGithubToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.visitGithubToolStripMenuItem.Text = "Visit Github page";
-            this.visitGithubToolStripMenuItem.Click += new System.EventHandler(this.visitGithubToolStripMenuItem_Click);
+            this.visitGithubPageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isti115ToolStripMenuItem,
+            this.meTwentyFiveToolStripMenuItem,
+            this.redRaptor93ToolStripMenuItem});
+            this.visitGithubPageToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visitGithubPageToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.visitGithubPageToolStripMenuItem.Name = "visitGithubPageToolStripMenuItem";
+            this.visitGithubPageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.visitGithubPageToolStripMenuItem.Text = "Visit Github page";
+            // 
+            // isti115ToolStripMenuItem
+            // 
+            this.isti115ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isti115ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.isti115ToolStripMenuItem.Name = "isti115ToolStripMenuItem";
+            this.isti115ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.isti115ToolStripMenuItem.Text = "Isti115";
+            this.isti115ToolStripMenuItem.Click += new System.EventHandler(this.isti115ToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -497,14 +512,14 @@
             // readmeToolStripMenuItem
             // 
             this.readmeToolStripMenuItem.Name = "readmeToolStripMenuItem";
-            this.readmeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readmeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.readmeToolStripMenuItem.Text = "Readme";
             this.readmeToolStripMenuItem.ToolTipText = "Open readme (WIP)";
             // 
             // jsonToolStripMenuItem
             // 
             this.jsonToolStripMenuItem.Name = "jsonToolStripMenuItem";
-            this.jsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jsonToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.jsonToolStripMenuItem.Text = "Json info";
             this.jsonToolStripMenuItem.ToolTipText = "Show contents of Json file";
             this.jsonToolStripMenuItem.Click += new System.EventHandler(this.jsonToolStripMenuItem_Click);
@@ -522,9 +537,15 @@
             // deleteJsonToolStripMenuItem
             // 
             this.deleteJsonToolStripMenuItem.Name = "deleteJsonToolStripMenuItem";
-            this.deleteJsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteJsonToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.deleteJsonToolStripMenuItem.Text = "Delete json";
             this.deleteJsonToolStripMenuItem.Click += new System.EventHandler(this.deleteJsonToolStripMenuItem_Click);
+            // 
+            // cMDArgsToolStripMenuItem
+            // 
+            this.cMDArgsToolStripMenuItem.Name = "cMDArgsToolStripMenuItem";
+            this.cMDArgsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.cMDArgsToolStripMenuItem.Text = "CMD args";
             // 
             // label1
             // 
@@ -706,11 +727,23 @@
             this.line2.TabIndex = 29;
             this.line2.Text = "███";
             // 
-            // cMDArgsToolStripMenuItem
+            // meTwentyFiveToolStripMenuItem
             // 
-            this.cMDArgsToolStripMenuItem.Name = "cMDArgsToolStripMenuItem";
-            this.cMDArgsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cMDArgsToolStripMenuItem.Text = "CMD args";
+            this.meTwentyFiveToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meTwentyFiveToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.meTwentyFiveToolStripMenuItem.Name = "meTwentyFiveToolStripMenuItem";
+            this.meTwentyFiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meTwentyFiveToolStripMenuItem.Text = "MeTwentyFive";
+            this.meTwentyFiveToolStripMenuItem.Click += new System.EventHandler(this.meTwentyFiveToolStripMenuItem_Click);
+            // 
+            // redRaptor93ToolStripMenuItem
+            // 
+            this.redRaptor93ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redRaptor93ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.redRaptor93ToolStripMenuItem.Name = "redRaptor93ToolStripMenuItem";
+            this.redRaptor93ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redRaptor93ToolStripMenuItem.Text = "RedRaptor93";
+            this.redRaptor93ToolStripMenuItem.Click += new System.EventHandler(this.redRaptor93ToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -811,7 +844,6 @@
         private System.Windows.Forms.ToolTip activeWarn;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem tipsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem visitGithubToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator speToolStripMenuItem;
@@ -828,6 +860,10 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteJsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cMDArgsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visitGithubPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isti115ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meTwentyFiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redRaptor93ToolStripMenuItem;
     }
 }
 

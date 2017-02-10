@@ -525,8 +525,8 @@ namespace BlenderRenderController
             {
                 // Error scriptsfolder not found
                 string caption = "Error";
-                string message = "Scripts folder not found";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                string message = "Scripts folder not found. Separate audio mixdown and automatic project info detection will not work, but you can still use the basic rendering functionality.";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 return;
             }
 
@@ -582,13 +582,7 @@ namespace BlenderRenderController
             }
 
         }
-
-        private void visitGithubToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            //Process.Start("https://github.com/Isti115/BlenderRenderController");
-            Process.Start("https://github.com/RedRaptor93/BlenderRenderController");
-        }
-
+        
         private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             json_info op = new json_info();
@@ -638,6 +632,21 @@ namespace BlenderRenderController
         private void endFrameNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void isti115ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/Isti115/BlenderRenderController");
+        }
+
+        private void meTwentyFiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MeTwentyFive/BlenderRenderController");
+        }
+
+        private void redRaptor93ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/RedRaptor93/BlenderRenderController");
         }
     }
 }
