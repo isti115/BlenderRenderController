@@ -1,3 +1,5 @@
+# Readme as written by RedRaptor93
+
 # What is this?
 This branch has some modifications I've done to make Isti115's program more useful and remove some annoying limitations that conflicted with my work-flow. I think it all made the program much more stable and useful, so I'm share it ;). I plan to make gradual improvements as I'm learning and this is my first programing project
 
