@@ -68,6 +68,7 @@
             this.jsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteJsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cMDArgsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.infoPanel = new System.Windows.Forms.Panel();
             this.outFolderPathTextBox = new System.Windows.Forms.TextBox();
@@ -83,7 +84,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.line = new System.Windows.Forms.Label();
             this.line2 = new System.Windows.Forms.Label();
-            this.cMDArgsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).BeginInit();
@@ -354,7 +354,8 @@
             this.processCountLabel.Size = new System.Drawing.Size(87, 15);
             this.processCountLabel.TabIndex = 15;
             this.processCountLabel.Text = "Process count:";
-            this.toolTip1.SetToolTip(this.processCountLabel, "N# of processes. For best results set acording to ");
+            this.toolTip1.SetToolTip(this.processCountLabel, "N# of processes. For best results set acording to\r\nhow many logical cores you hav" +
+        "e.");
             // 
             // renderAllButton
             // 
@@ -497,14 +498,14 @@
             // readmeToolStripMenuItem
             // 
             this.readmeToolStripMenuItem.Name = "readmeToolStripMenuItem";
-            this.readmeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.readmeToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.readmeToolStripMenuItem.Text = "Readme";
             this.readmeToolStripMenuItem.ToolTipText = "Open readme (WIP)";
             // 
             // jsonToolStripMenuItem
             // 
             this.jsonToolStripMenuItem.Name = "jsonToolStripMenuItem";
-            this.jsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jsonToolStripMenuItem.Size = new System.Drawing.Size(121, 22);
             this.jsonToolStripMenuItem.Text = "Json info";
             this.jsonToolStripMenuItem.ToolTipText = "Show contents of Json file";
             this.jsonToolStripMenuItem.Click += new System.EventHandler(this.jsonToolStripMenuItem_Click);
@@ -522,9 +523,15 @@
             // deleteJsonToolStripMenuItem
             // 
             this.deleteJsonToolStripMenuItem.Name = "deleteJsonToolStripMenuItem";
-            this.deleteJsonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteJsonToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.deleteJsonToolStripMenuItem.Text = "Delete json";
             this.deleteJsonToolStripMenuItem.Click += new System.EventHandler(this.deleteJsonToolStripMenuItem_Click);
+            // 
+            // cMDArgsToolStripMenuItem
+            // 
+            this.cMDArgsToolStripMenuItem.Name = "cMDArgsToolStripMenuItem";
+            this.cMDArgsToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.cMDArgsToolStripMenuItem.Text = "CMD args";
             // 
             // label1
             // 
@@ -592,7 +599,6 @@
             this.infoNoScenes.ReadOnly = true;
             this.infoNoScenes.Size = new System.Drawing.Size(116, 20);
             this.infoNoScenes.TabIndex = 26;
-            this.infoNoScenes.Text = "...";
             this.infoNoScenes.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.toolTip1.SetToolTip(this.infoNoScenes, "Number of scenes in project.");
             // 
@@ -606,7 +612,6 @@
             this.infoActiveScene.ReadOnly = true;
             this.infoActiveScene.Size = new System.Drawing.Size(122, 20);
             this.infoActiveScene.TabIndex = 25;
-            this.infoActiveScene.Text = "...";
             this.infoActiveScene.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.activeWarn.SetToolTip(this.infoActiveScene, "This program will only render the ACTIVE scene, if you \r\nhave more then one scene" +
         " on your project sure you \r\nsave it with the scene you want OPEN.");
@@ -705,12 +710,6 @@
             this.line2.Size = new System.Drawing.Size(517, 5);
             this.line2.TabIndex = 29;
             this.line2.Text = "███";
-            // 
-            // cMDArgsToolStripMenuItem
-            // 
-            this.cMDArgsToolStripMenuItem.Name = "cMDArgsToolStripMenuItem";
-            this.cMDArgsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.cMDArgsToolStripMenuItem.Text = "CMD args";
             // 
             // MainForm
             // 

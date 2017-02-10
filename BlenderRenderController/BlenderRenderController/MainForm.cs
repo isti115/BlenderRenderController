@@ -333,9 +333,7 @@ namespace BlenderRenderController
             if (!Directory.Exists(ScriptsPath))
             {
                 // Error scriptsfolder not found
-                string caption = "Error";
-                string message = "Scripts folder not found";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorMsgs(-404);
                 return;
             }
 
@@ -439,15 +437,13 @@ namespace BlenderRenderController
 
         /// <summary>
         /// Error central, displays message and does actions
-        /// according to given code, return's int equal to 
-        /// error code
+        /// according to given code, then returns
         /// </summary>
         /// <param name="er"></param>
         /// <returns>same as er</returns>
-        int errorMsgs(int er)
+        void errorMsgs(int er)
         {
             int input = er;
-
             // Actions
 
             // disable buttons if invalid
@@ -476,36 +472,43 @@ namespace BlenderRenderController
             {
                 message = "Output file path empty, please set a valid path in project";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -1;
+                return;
             }
             else if (input == -2)
             {
                 message = "Invalid Output path";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -2;
+                return;
             }
             else if (input == -3)
             {
                 message = "Output path is relative, you MUST use absolute paths ONLY";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -3;
+                return;
             }
             else if (input == -100)
             {
                 message = "FFmpeg can't find working folder";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -100;
+                return;
             }
             else if (input == -104)
             {
                 message = "Invalid project";
                 MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return -104;
+                return;
+            }
+            else if (input == -404)
+            {
+                // Error scriptsfolder not found
+                message = "Scripts folder not found. Separate audio mixdown and automatic project info detection will not work, but you can still use the basic rendering functionality.";
+                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                return;
             }
             else
             {
                 // no problems, don't show error message
-                return 0;
+                return;
             }
             
         }
@@ -523,10 +526,7 @@ namespace BlenderRenderController
 
             if (!Directory.Exists(ScriptsPath))
             {
-                // Error scriptsfolder not found
-                string caption = "Error";
-                string message = "Scripts folder not found";
-                MessageBox.Show(message, caption, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                errorMsgs(-404);
                 return;
             }
 
