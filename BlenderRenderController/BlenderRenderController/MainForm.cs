@@ -248,15 +248,23 @@ namespace BlenderRenderController
 
         private void concatenatePartsButton_Click(object sender, EventArgs e)
         {
-            string ffmpeg_dir;
-            if (ajustOutDir.Checked == true)
+            string ffmpeg_dir = "...";
+
+            switch (ajustOutDir.CheckState)
             {
-                ffmpeg_dir = AltDir;
+                case CheckState.Checked:
+                    ffmpeg_dir = AltDir;
+                    break;
+                case CheckState.Unchecked:
+                    ffmpeg_dir = outFolderPath;
+                    break;
+                case CheckState.Indeterminate:
+                    break;
+                default:
+                    ffmpeg_dir = outFolderPath;
+                    break;
             }
-            else
-            {
-                ffmpeg_dir = outFolderPath;
-            }
+
             if (!Directory.Exists(ffmpeg_dir))
             {
                 errorMsgs(-100);
@@ -633,11 +641,6 @@ namespace BlenderRenderController
         private void deleteJsonToolStripMenuItem_Click(object sender, EventArgs e)
         {
             jsonDel();
-        }
-
-        private void endFrameNumericUpDown_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -175,7 +175,6 @@
             0,
             0,
             0});
-            this.endFrameNumericUpDown.ValueChanged += new System.EventHandler(this.endFrameNumericUpDown_ValueChanged);
             // 
             // startFrameLabel
             // 
