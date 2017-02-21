@@ -10,11 +10,15 @@ This tool offers a work-around until the Blender developers make a better render
 This tool offers a work-around by calling multiple instances of `blender.exe`, each rendering a different segment of the project at the same time, making use of processing power that would otherwise go unused. After all parts are rendered, join them toghether and BAM, your video is ready much faster then previusly possible.
 
 ## How much difference does it make?
-Quite a lot! I did some testing shown beelow:
-%GRAPH PICS%
+Quite a lot! I did some testing shown below (Blender Render Conttroler shown in orange):
+
+![Test3](https://app.box.com/representation/file_version_147671500287/image_2048/1.png?shared_name=u90snyjbzslz0zszwges1helzmyz6b8y)
+
+![Test1](https://app.box.com/representation/file_version_147672318497/image_2048/1.png?shared_name=i1bwfn03tie6ieehwnz7mbp4lu700gzy)
+
 PC used: i7 4790, 16GB DDR3 RAM @ 1600Mhz
 
-Really shows the importance of those extra cores huh? Even if you don't intend to use Blender VSE often, thats a LOT of time saved. And the time added by joining the videos toghether is negligible (less then 1min).
+Really shows the importance of those extra cores huh? Even if you don't use Blender VSE often, thats a LOT of time saved. And the time added by joining the videos toghether is negligible (less then 1min).
 
 ## HOW TO USE
 
