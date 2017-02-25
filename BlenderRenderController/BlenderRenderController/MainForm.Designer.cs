@@ -62,7 +62,11 @@
             this.autocombineToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugShow = new System.Windows.Forms.ToolStripMenuItem();
             this.speToolStripMenuItem = new System.Windows.Forms.ToolStripSeparator();
-            this.visitGithubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.visitGithubPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.isti115ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.jendabekToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.meTwentyFiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.redRaptor93ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.readmeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.jsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -437,7 +441,7 @@
             this.autocombineToolStripMenuItem,
             this.debugShow,
             this.speToolStripMenuItem,
-            this.visitGithubToolStripMenuItem});
+            this.visitGithubPageToolStripMenuItem});
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.aboutToolStripMenuItem.Text = "Options";
@@ -476,14 +480,53 @@
             this.speToolStripMenuItem.Name = "speToolStripMenuItem";
             this.speToolStripMenuItem.Size = new System.Drawing.Size(161, 6);
             // 
-            // visitGithubToolStripMenuItem
+            // visitGithubPageToolStripMenuItem
             // 
-            this.visitGithubToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline);
-            this.visitGithubToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
-            this.visitGithubToolStripMenuItem.Name = "visitGithubToolStripMenuItem";
-            this.visitGithubToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.visitGithubToolStripMenuItem.Text = "Visit Github page";
-            this.visitGithubToolStripMenuItem.Click += new System.EventHandler(this.visitGithubToolStripMenuItem_Click);
+            this.visitGithubPageToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.isti115ToolStripMenuItem,
+            this.meTwentyFiveToolStripMenuItem,
+            this.redRaptor93ToolStripMenuItem,
+            this.jendabekToolStripMenuItem});
+            this.visitGithubPageToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.visitGithubPageToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.visitGithubPageToolStripMenuItem.Name = "visitGithubPageToolStripMenuItem";
+            this.visitGithubPageToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
+            this.visitGithubPageToolStripMenuItem.Text = "Visit Github page";
+            // 
+            // isti115ToolStripMenuItem
+            // 
+            this.isti115ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.isti115ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.isti115ToolStripMenuItem.Name = "isti115ToolStripMenuItem";
+            this.isti115ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.isti115ToolStripMenuItem.Text = "Isti115";
+            this.isti115ToolStripMenuItem.Click += new System.EventHandler(this.isti115ToolStripMenuItem_Click);
+            // 
+            // meTwentyFiveToolStripMenuItem
+            // 
+            this.meTwentyFiveToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.meTwentyFiveToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.meTwentyFiveToolStripMenuItem.Name = "meTwentyFiveToolStripMenuItem";
+            this.meTwentyFiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.meTwentyFiveToolStripMenuItem.Text = "MeTwentyFive";
+            this.meTwentyFiveToolStripMenuItem.Click += new System.EventHandler(this.meTwentyFiveToolStripMenuItem_Click);
+            // 
+            // redRaptor93ToolStripMenuItem
+            // 
+            this.redRaptor93ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.redRaptor93ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.redRaptor93ToolStripMenuItem.Name = "redRaptor93ToolStripMenuItem";
+            this.redRaptor93ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.redRaptor93ToolStripMenuItem.Text = "RedRaptor93";
+            this.redRaptor93ToolStripMenuItem.Click += new System.EventHandler(this.redRaptor93ToolStripMenuItem_Click);
+            // 
+            // jendabekToolStripMenuItem
+            // 
+            this.jendabekToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
+            this.jendabekToolStripMenuItem.Name = "jendabekToolStripMenuItem";
+            this.jendabekToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
+            this.jendabekToolStripMenuItem.Text = "jendabek";
+            this.jendabekToolStripMenuItem.Click += new System.EventHandler(this.jendabekToolStripMenuItem_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -809,7 +852,11 @@
         private System.Windows.Forms.ToolTip activeWarn;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ToolStripMenuItem tipsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem visitGithubToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visitGithubPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem isti115ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem meTwentyFiveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem redRaptor93ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem jendabekToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem jsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator speToolStripMenuItem;

@@ -591,10 +591,23 @@ namespace BlenderRenderController
 
         }
 
-        private void visitGithubToolStripMenuItem_Click(object sender, EventArgs e)
+        private void isti115ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Process.Start("https://github.com/Isti115/BlenderRenderController");
+            Process.Start("https://github.com/Isti115/BlenderRenderController");
+        }
+
+        private void meTwentyFiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/MeTwentyFive/BlenderRenderController");
+        }
+
+        private void redRaptor93ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
             Process.Start("https://github.com/RedRaptor93/BlenderRenderController");
+        }
+        private void jendabekToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Process.Start("https://github.com/jendabek/BlenderRenderController");
         }
 
         private void jsonToolStripMenuItem_Click(object sender, EventArgs e)
