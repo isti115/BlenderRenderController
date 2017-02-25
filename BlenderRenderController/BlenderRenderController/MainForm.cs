@@ -18,12 +18,12 @@ namespace BlenderRenderController
 
     public partial class MainForm : Form
     {
-        string   blendFilePath;
-        string   outFolderPath;
-		string   blendProjectName = "concat_output.mp4";
-		DateTime startTime        = DateTime.MaxValue;
+        string blendFilePath;
+        string outFolderPath;
+        string blendProjectName = "concat_output.mp4";
+        DateTime startTime = DateTime.MaxValue;
 
-		string ScriptsPath;
+        string ScriptsPath;
 
         Timer renderAllTimer;
         int runningRenderProcessCount;
@@ -33,11 +33,12 @@ namespace BlenderRenderController
         // Lenth of segments, TEST
         int SeqFrame = 1000;
 
-        public class BlenderData {
-			public int    StartFrame;
-			public int    EndFrame;
-			public string OutputDirectory;
-			public string ProjectName;
+        public class BlenderData
+        {
+            public int StartFrame;
+            public int EndFrame;
+            public string OutputDirectory;
+            public string ProjectName;
             // new
             public string NumScenes;
             public string ActiveScene;
@@ -54,11 +55,11 @@ namespace BlenderRenderController
         {
             InitializeComponent();
 
-			//string execPath = Path.GetDirectoryName( System.Reflection.Assembly.GetExecutingAssembly().CodeBase );
-			string execPath = new Uri( System.Reflection.Assembly.GetExecutingAssembly().CodeBase ).LocalPath;
+            //string execPath = Path.GetDirectoryName( System.Reflection.Assembly.GetExecutingAssembly().CodeBase );
+            string execPath = new Uri(System.Reflection.Assembly.GetExecutingAssembly().CodeBase).LocalPath;
 
-			ScriptsPath = Path.Combine( Path.GetDirectoryName( execPath ), "Scripts" );
-			Trace.WriteLine( String.Format( "Scripts Path: '{0}'", ScriptsPath ) );
+            ScriptsPath = Path.Combine(Path.GetDirectoryName(execPath), "Scripts");
+            Trace.WriteLine(String.Format("Scripts Path: '{0}'", ScriptsPath));
 
         }
 
@@ -103,11 +104,11 @@ namespace BlenderRenderController
 
             var result = blendFileBrowseDialog.ShowDialog();
 
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
-                blendFilePath             = blendFileBrowseDialog.FileName;
+                blendFilePath = blendFileBrowseDialog.FileName;
                 blendFilePathTextBox.Text = blendFilePath;
-				DoReadBlenderData();
+                DoReadBlenderData();
             }
 
         }
@@ -137,17 +138,17 @@ namespace BlenderRenderController
 
             p.StartInfo.WorkingDirectory = outFolderPath;
             p.StartInfo.FileName = "blender";
-			p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+            p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
 
             //p.StartInfo.Arguments = String.Format("-b \"{0}\" -E {1} -s {2} -e {3} {4} -a ",
             p.StartInfo.Arguments = String.Format("-b \"{0}\" -E {1} -s {2} -e {3} -a ",
                                                   blendFilePathTextBox.Text,
                                                   rendererComboBox.Text,
-                                                  startFrameNumericUpDown.Value, 
+                                                  startFrameNumericUpDown.Value,
                                                   endFrameNumericUpDown.Value
-												  );
+                                                  );
 
-			Trace.WriteLine( String.Format( "CEW: {0}", p.StartInfo.Arguments ) );
+            Trace.WriteLine(String.Format("CEW: {0}", p.StartInfo.Arguments));
 
             p.EnableRaisingEvents = true;
             p.Exited += new EventHandler(chunk_Finished);
@@ -198,21 +199,23 @@ namespace BlenderRenderController
 
         private void renderAllButton_Click(object sender, EventArgs e)
         {
-			//Becuase "clever" coding before us
-			if( startTime == DateTime.MaxValue ) {
-				//First time, set start time
-				startTime = DateTime.Now;
-				TotalTime.Text = "Total Time: 00:00:00";
-			}
-			else {
-				//Stopping whether finished or user intervention so show time run
-				TimeSpan runTime = DateTime.Now - startTime;
-				TotalTime.Text = String.Format( "Total Time: {0,2:D2}:{1,2:D2}:{2,2:D2}", (int)runTime.TotalHours, runTime.Minutes, runTime.Seconds );
-				startTime = DateTime.MaxValue;
-			}
+            //Becuase "clever" coding before us
+            if (startTime == DateTime.MaxValue)
+            {
+                //First time, set start time
+                startTime = DateTime.Now;
+                TotalTime.Text = "Total Time: 00:00:00";
+            }
+            else
+            {
+                //Stopping whether finished or user intervention so show time run
+                TimeSpan runTime = DateTime.Now - startTime;
+                TotalTime.Text = String.Format("Total Time: {0,2:D2}:{1,2:D2}:{2,2:D2}", (int)runTime.TotalHours, runTime.Minutes, runTime.Seconds);
+                startTime = DateTime.MaxValue;
+            }
 
             renderAllTimer.Enabled = !renderAllTimer.Enabled;
-            renderAllButton.Text   = renderAllTimer.Enabled ? "Stop" : "Render all";
+            renderAllButton.Text = renderAllTimer.Enabled ? "Stop" : "Render all";
         }
 
         private void updateProcessManagement(object sender, EventArgs e)
@@ -226,8 +229,8 @@ namespace BlenderRenderController
 
             renderProgressBar.Value = (int)((endFrameNumericUpDown.Value / totalFrameCountNumericUpDown.Value) * 100);
 
-			TimeSpan runTime = DateTime.Now - startTime;
-			TotalTime.Text = String.Format( "Total Time: {0,2:D2}:{1,2:D2}:{2,2:D2}", (int)runTime.TotalHours, runTime.Minutes, runTime.Seconds );
+            TimeSpan runTime = DateTime.Now - startTime;
+            TotalTime.Text = String.Format("Total Time: {0,2:D2}:{1,2:D2}:{2,2:D2}", (int)runTime.TotalHours, runTime.Minutes, runTime.Seconds);
 
             if (runningRenderProcessCount < processCountNumericUpDown.Value)
             {
@@ -237,14 +240,14 @@ namespace BlenderRenderController
 
         }
 
-		private List<string> findFiles( string folderPath, string fileSearch )
-		{
-            string[] partList   = Directory.GetFiles(folderPath, fileSearch);
-			Regex    filePatern = new Regex( @"\d+-\d+" + Path.GetExtension(fileSearch) );
+        private List<string> findFiles(string folderPath, string fileSearch)
+        {
+            string[] partList = Directory.GetFiles(folderPath, fileSearch);
+            Regex filePatern = new Regex(@"\d+-\d+" + Path.GetExtension(fileSearch));
 
-            return partList.Where( file => filePatern.IsMatch( file ) ).ToList();
+            return partList.Where(file => filePatern.IsMatch(file)).ToList();
 
-		}
+        }
 
         private void concatenatePartsButton_Click(object sender, EventArgs e)
         {
@@ -304,7 +307,7 @@ namespace BlenderRenderController
 
 
             Process p = new Process();
-            
+
             p.StartInfo.WorkingDirectory = ffmpeg_dir;
             //p.StartInfo.WorkingDirectory = AltDir;
             p.StartInfo.FileName = "ffmpeg";
@@ -330,13 +333,15 @@ namespace BlenderRenderController
             return aEnd.CompareTo(bEnd);
         }
 
-		private void DoReadBlenderData() {
+        private void DoReadBlenderData()
+        {
 
-            if ( !File.Exists( blendFilePathTextBox.Text ) ) {
+            if (!File.Exists(blendFilePathTextBox.Text))
+            {
                 // file does not exist
                 errorMsgs(-104);
                 return;
-			}
+            }
 
             if (!Directory.Exists(ScriptsPath))
             {
@@ -347,66 +352,76 @@ namespace BlenderRenderController
 
             Process p = new Process();
             //p.StartInfo.WorkingDirectory     = outFolderPath;
-            p.StartInfo.WorkingDirectory       = ScriptsPath;
-            p.StartInfo.FileName               = "blender";
-			p.StartInfo.RedirectStandardOutput = true;
-			p.StartInfo.CreateNoWindow         = true;
-			p.StartInfo.UseShellExecute        = false;
+            p.StartInfo.WorkingDirectory = ScriptsPath;
+            p.StartInfo.FileName = "blender";
+            p.StartInfo.RedirectStandardOutput = true;
+            p.StartInfo.CreateNoWindow = true;
+            p.StartInfo.UseShellExecute = false;
 
             p.StartInfo.Arguments = String.Format("-b \"{0}\" -P \"{1}\"",
                                                   blendFilePathTextBox.Text,
                                                   Path.Combine(ScriptsPath, "get_project_info.py")
                                     );
 
-			try {
-				p.Start();
-			}
-			catch( Exception ex ) {
-				Trace.WriteLine( ex );
-			}
-            
-			StringBuilder jsonInfo    = new StringBuilder();
-			bool          jsonStarted = false;
-			int           curlyStack  = 0;
+            try
+            {
+                p.Start();
+            }
+            catch (Exception ex)
+            {
+                Trace.WriteLine(ex);
+            }
 
-            while ( !p.StandardOutput.EndOfStream ) {
-				string line = p.StandardOutput.ReadLine();
+            StringBuilder jsonInfo = new StringBuilder();
+            bool jsonStarted = false;
+            int curlyStack = 0;
 
-				if( line.Contains( "{" ) ) {
-					jsonStarted = true;
-					curlyStack++;
-				}
+            while (!p.StandardOutput.EndOfStream)
+            {
+                string line = p.StandardOutput.ReadLine();
 
-				if( jsonStarted ) {
+                if (line.Contains("{"))
+                {
+                    jsonStarted = true;
+                    curlyStack++;
+                }
 
-					if( !line.ToLower().Contains( "blender quit" ) && curlyStack > 0 ) {
-						jsonInfo.AppendLine( line );
-					}
+                if (jsonStarted)
+                {
 
-					if( line.Contains( "}" ) ) {
+                    if (!line.ToLower().Contains("blender quit") && curlyStack > 0)
+                    {
+                        jsonInfo.AppendLine(line);
+                    }
 
-						curlyStack--;
+                    if (line.Contains("}"))
+                    {
 
-						if( curlyStack == 0 ) {
-							jsonStarted = false;
-						}
+                        curlyStack--;
 
-					}
+                        if (curlyStack == 0)
+                        {
+                            jsonStarted = false;
+                        }
 
-				}
+                    }
 
-			}
+                }
 
-			BlenderData blendData = null;
-			if( jsonInfo.Length > 0 ) { 
-				JavaScriptSerializer serializer = new JavaScriptSerializer();
-				blendData = serializer.Deserialize<BlenderData>( jsonInfo.ToString() );
-			}
+            }
 
-			if( blendData != null ) {
+            BlenderData blendData = null;
+            if (jsonInfo.Length > 0)
+            {
+                JavaScriptSerializer serializer = new JavaScriptSerializer();
+                blendData = serializer.Deserialize<BlenderData>(jsonInfo.ToString());
+            }
 
-                startFrameNumericUpDown.Value      = blendData.StartFrame;
-				totalFrameCountNumericUpDown.Value = blendData.EndFrame;
+            if (blendData != null)
+            {
+
+                startFrameNumericUpDown.Value = blendData.StartFrame;
+                totalFrameCountNumericUpDown.Value = blendData.EndFrame;
 
                 //endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + endFrameNumericUpDown.Value;
 
@@ -420,28 +435,29 @@ namespace BlenderRenderController
                     partsFolderPathTextBox.Text = outFolderPath = blendData.OutputDirectory;
                 }
 
-                outFolderPathTextBox.Text          = outFolderPath = blendData.OutputDirectory;
-                infoActiveScene.Text               = blendData.ActiveScene;
-                infoNoScenes.Text                  = blendData.NumScenes;
-                AltDir                             = blendData.AltDir;
-                ErrorCode                          = blendData.ErrorCode;
+                outFolderPathTextBox.Text = outFolderPath = blendData.OutputDirectory;
+                infoActiveScene.Text = blendData.ActiveScene;
+                infoNoScenes.Text = blendData.NumScenes;
+                AltDir = blendData.AltDir;
+                ErrorCode = blendData.ErrorCode;
                 //blendProjectName                   = blendData.ProjectName;
 
-                if ( blendData.EndFrame < endFrameNumericUpDown.Value ) {
-					endFrameNumericUpDown.Value = blendData.EndFrame;
-				}
+                if (blendData.EndFrame < endFrameNumericUpDown.Value)
+                {
+                    endFrameNumericUpDown.Value = blendData.EndFrame;
+                }
 
-			}
+            }
             // Error checker
             errorMsgs(ErrorCode);
 
             //outFolderPathTextBox.Text = string.Empty;
 
-            Trace.WriteLine( "Json data = " + jsonInfo.ToString() );
+            Trace.WriteLine("Json data = " + jsonInfo.ToString());
 
-			//Trace.WriteLine( String.Format( "CEW: {0}", p.StartInfo.Arguments ) );
+            //Trace.WriteLine( String.Format( "CEW: {0}", p.StartInfo.Arguments ) );
 
-		}
+        }
 
         /// <summary>
         /// Error central, displays message and does actions
@@ -518,17 +534,20 @@ namespace BlenderRenderController
                 // no problems, don't show error message
                 return;
             }
-            
+
         }
 
-		private void ReadBlenderData_Click( object sender, EventArgs e ) {
+        private void ReadBlenderData_Click(object sender, EventArgs e)
+        {
 
             DoReadBlenderData();
-		}
+        }
 
-        private void MixdownAudio_Click(object sender, EventArgs e) {
+        private void MixdownAudio_Click(object sender, EventArgs e)
+        {
 
-            if (!File.Exists(blendFilePathTextBox.Text)) {
+            if (!File.Exists(blendFilePathTextBox.Text))
+            {
                 return;
             }
 
@@ -539,7 +558,8 @@ namespace BlenderRenderController
             }
 
 
-            if (!Directory.Exists(partsFolderPathTextBox.Text)) {
+            if (!Directory.Exists(partsFolderPathTextBox.Text))
+            {
                 Directory.CreateDirectory(partsFolderPathTextBox.Text);
             }
 
