@@ -5,10 +5,10 @@ Original post by me on Blender StackExchange: http://blender.stackexchange.com/a
 ## Thanks to
 
 * [MeTwentyFive](https://github.com/MeTwentyFive/BlenderRenderController) for the initial update.
-* [RedRaptor93](https://github.com/RedRaptor93/BlenderRenderController/) for adding features and writing the README.
+* [RedRaptor93](https://github.com/RedRaptor93/BlenderRenderController/) for adding features and writing the first version of this README.
 * [jendabek](https://github.com/jendabek/BlenderRenderController) for the separate development. His changes are not merged into the release, so make sure to check them out as well at his repository!
 
-# Below is the README written by RedRaptor93
+# Below is the README written by RedRaptor93 and modified by me (Isti115) for `Release v0.4`
 
 ## What is this?
 Blender Render Controller is a tool to help speed up the render process in Blender's Video Sequence Editor(VSE).
@@ -42,14 +42,19 @@ Really shows the importance of those extra cores huh? Even if you don't use Blen
 	
 2. Open BlenderRenderController, browse for the desired blend file
 
-	- Alternatively, you can specify a .blend file automatically in CMD: `> BlenderRenderController.exe “filepath to .blend`
+	- Alternatively, you can drop the .blend file onto the window or specify it as a command line argument:  
+	`> BlenderRenderController.exe "myProjectFile.blend"`
 	
 3. Select the chunk of the segment you want to render and press "render segment" to render a single segment or select "render all" to render the project in segments.
 
-	- The length of each segment is controlled by the difference between the "Start Frame" and "End frame" values, the default length when you open or re-read a file can be adjusted ("segment length" in Options => Settings)
+	- The length of each segment is controlled by the difference between the "Start Frame" and "End frame" values.  
+	[Only in RedRaptor's version: The default length when you open or re-read a file can be adjusted ("segment length" in Options => Settings)]
 	
 4. When all the parts are done, click "Concatenate parts" to join all parts together
 
 	- If you get a "Can't find working folder error", try "remove file from path" option below, "parts folder" must point to a FOLDER, not a FILE.
 	
-5. That's it!
+5. If you find that the sound glitches at the concatenation points you should export the audio separately and then merge it with the video file afterwards with the labeled buttons in section __3. Audio__ of the program.
+
+6. That's it! Hopefully you found this useful!  
+If so, don't forget to star the repository and upvote the [StackExchange answer] (http://blender.stackexchange.com/a/44906/20611) so more people can find it! :)
