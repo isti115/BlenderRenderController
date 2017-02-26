@@ -60,7 +60,6 @@ namespace BlenderRenderController
 
             ScriptsPath = Path.Combine(Path.GetDirectoryName(execPath), "Scripts");
             Trace.WriteLine(String.Format("Scripts Path: '{0}'", ScriptsPath));
-
         }
 
         // Deletes json on form close
@@ -110,7 +109,6 @@ namespace BlenderRenderController
                 blendFilePathTextBox.Text = blendFilePath;
                 DoReadBlenderData();
             }
-
         }
 
         private void partsFolderBrowseButton_Click(object sender, EventArgs e)
@@ -155,7 +153,6 @@ namespace BlenderRenderController
 
             p.Start();
             runningRenderProcessCount++;
-
         }
 
         private void chunk_Finished(object sender, EventArgs e)
@@ -178,7 +175,6 @@ namespace BlenderRenderController
                 endFrameNumericUpDown.Value = startFrameNumericUpDown.Value - 1;
                 startFrameNumericUpDown.Value = endFrameNumericUpDown.Value - difference;
             }
-
         }
 
         private void nextChunkButton_Click(object sender, EventArgs e)
@@ -194,7 +190,6 @@ namespace BlenderRenderController
             {
                 endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + difference;
             }
-
         }
 
         private void renderAllButton_Click(object sender, EventArgs e)
@@ -220,7 +215,6 @@ namespace BlenderRenderController
 
         private void updateProcessManagement(object sender, EventArgs e)
         {
-
             if (!(startFrameNumericUpDown.Value < totalFrameCountNumericUpDown.Value))
             {
                 renderAllButton_Click(sender, e);
@@ -237,7 +231,6 @@ namespace BlenderRenderController
                 renderSegmentButton_Click(null, EventArgs.Empty);
                 nextChunkButton_Click(null, EventArgs.Empty);
             }
-
         }
 
         private List<string> findFiles(string folderPath, string fileSearch)
@@ -246,7 +239,6 @@ namespace BlenderRenderController
             Regex filePatern = new Regex(@"\d+-\d+" + Path.GetExtension(fileSearch));
 
             return partList.Where(file => filePatern.IsMatch(file)).ToList();
-
         }
 
         private void concatenatePartsButton_Click(object sender, EventArgs e)
@@ -320,7 +312,6 @@ namespace BlenderRenderController
                                     );
 
             p.Start();
-
         }
 
         public int compareParts(string a, string b)
@@ -539,13 +530,11 @@ namespace BlenderRenderController
 
         private void ReadBlenderData_Click(object sender, EventArgs e)
         {
-
             DoReadBlenderData();
         }
 
         private void MixdownAudio_Click(object sender, EventArgs e)
         {
-
             if (!File.Exists(blendFilePathTextBox.Text))
             {
                 return;
@@ -556,7 +545,6 @@ namespace BlenderRenderController
                 errorMsgs(-404);
                 return;
             }
-
 
             if (!Directory.Exists(partsFolderPathTextBox.Text))
             {
@@ -582,8 +570,42 @@ namespace BlenderRenderController
             p.WaitForExit((int)TimeSpan.FromMinutes(5).TotalMilliseconds);
 
             Trace.WriteLine("MixDown Completed");
+        }
 
+        private void mergeAudioButton_Click(object sender, EventArgs e)
+        {
+            string ffmpeg_dir;
+            if (ajustOutDir.Checked == true)
+            {
+                ffmpeg_dir = AltDir;
+            }
+            else
+            {
+                ffmpeg_dir = outFolderPath;
+            }
+            if (!Directory.Exists(ffmpeg_dir))
+            {
+                errorMsgs(-100);
+                return;
+            }
 
+            string audioFile = Path.GetFileNameWithoutExtension(blendFilePathTextBox.Text);
+
+            if (File.Exists(Path.Combine(ffmpeg_dir, audioFile + ".ac3")))
+            {
+                Process p = new Process();
+
+                p.StartInfo.WorkingDirectory = ffmpeg_dir;
+                //p.StartInfo.WorkingDirectory = AltDir;
+                p.StartInfo.FileName = "ffmpeg";
+                //p.StartInfo.WindowStyle = ProcessWindowStyle.Minimized;
+
+                p.StartInfo.Arguments = String.Format("-i concat_output.mp4 -i {0}.ac3 -map 0:v -map 1:a -c copy -shortest audio_output.mp4", audioFile);
+
+                p.Start();
+
+                //p.StandardInput.WriteLine('y');
+            }
         }
 
         /* About this app
@@ -687,6 +709,8 @@ namespace BlenderRenderController
 
             this.blendFilePath = files[0];
             this.blendFilePathTextBox.Text = this.blendFilePath;
+
+            DoReadBlenderData();
         }
     }
 }

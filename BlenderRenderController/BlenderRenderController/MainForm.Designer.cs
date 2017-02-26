@@ -88,6 +88,13 @@
             this.label6 = new System.Windows.Forms.Label();
             this.line = new System.Windows.Forms.Label();
             this.line2 = new System.Windows.Forms.Label();
+            this.mergeAudioButton = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.startFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.endFrameNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalFrameCountNumericUpDown)).BeginInit();
@@ -98,9 +105,8 @@
             // 
             // renderSegmentButton
             // 
-            this.renderSegmentButton.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.renderSegmentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.renderSegmentButton.Location = new System.Drawing.Point(276, 304);
+            this.renderSegmentButton.Location = new System.Drawing.Point(276, 294);
             this.renderSegmentButton.Name = "renderSegmentButton";
             this.renderSegmentButton.Size = new System.Drawing.Size(127, 39);
             this.renderSegmentButton.TabIndex = 0;
@@ -111,8 +117,7 @@
             // 
             // blendFileBrowseButton
             // 
-            this.blendFileBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.blendFileBrowseButton.Location = new System.Drawing.Point(565, 74);
+            this.blendFileBrowseButton.Location = new System.Drawing.Point(565, 69);
             this.blendFileBrowseButton.Name = "blendFileBrowseButton";
             this.blendFileBrowseButton.Size = new System.Drawing.Size(76, 27);
             this.blendFileBrowseButton.TabIndex = 1;
@@ -122,8 +127,7 @@
             // 
             // renderProgressBar
             // 
-            this.renderProgressBar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.renderProgressBar.Location = new System.Drawing.Point(37, 353);
+            this.renderProgressBar.Location = new System.Drawing.Point(37, 343);
             this.renderProgressBar.Name = "renderProgressBar";
             this.renderProgressBar.Size = new System.Drawing.Size(604, 23);
             this.renderProgressBar.Step = 1;
@@ -132,16 +136,14 @@
             // 
             // blendFilePathTextBox
             // 
-            this.blendFilePathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.blendFilePathTextBox.Location = new System.Drawing.Point(76, 77);
+            this.blendFilePathTextBox.Location = new System.Drawing.Point(76, 72);
             this.blendFilePathTextBox.Name = "blendFilePathTextBox";
             this.blendFilePathTextBox.Size = new System.Drawing.Size(482, 20);
             this.blendFilePathTextBox.TabIndex = 3;
             // 
             // startFrameNumericUpDown
             // 
-            this.startFrameNumericUpDown.Location = new System.Drawing.Point(86, 238);
+            this.startFrameNumericUpDown.Location = new System.Drawing.Point(86, 233);
             this.startFrameNumericUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -159,7 +161,7 @@
             // 
             // endFrameNumericUpDown
             // 
-            this.endFrameNumericUpDown.Location = new System.Drawing.Point(86, 271);
+            this.endFrameNumericUpDown.Location = new System.Drawing.Point(86, 266);
             this.endFrameNumericUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -183,7 +185,7 @@
             // startFrameLabel
             // 
             this.startFrameLabel.AutoSize = true;
-            this.startFrameLabel.Location = new System.Drawing.Point(19, 240);
+            this.startFrameLabel.Location = new System.Drawing.Point(19, 235);
             this.startFrameLabel.Name = "startFrameLabel";
             this.startFrameLabel.Size = new System.Drawing.Size(61, 13);
             this.startFrameLabel.TabIndex = 6;
@@ -193,7 +195,7 @@
             // endFrameLabel
             // 
             this.endFrameLabel.AutoSize = true;
-            this.endFrameLabel.Location = new System.Drawing.Point(19, 273);
+            this.endFrameLabel.Location = new System.Drawing.Point(19, 268);
             this.endFrameLabel.Name = "endFrameLabel";
             this.endFrameLabel.Size = new System.Drawing.Size(58, 13);
             this.endFrameLabel.TabIndex = 7;
@@ -204,7 +206,7 @@
             // 
             this.blendFileLabel.AutoSize = true;
             this.blendFileLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.blendFileLabel.Location = new System.Drawing.Point(6, 78);
+            this.blendFileLabel.Location = new System.Drawing.Point(6, 73);
             this.blendFileLabel.Name = "blendFileLabel";
             this.blendFileLabel.Size = new System.Drawing.Size(61, 15);
             this.blendFileLabel.TabIndex = 8;
@@ -212,9 +214,7 @@
             // 
             // partsFolderBrowseButton
             // 
-            this.partsFolderBrowseButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.partsFolderBrowseButton.Location = new System.Drawing.Point(564, 430);
+            this.partsFolderBrowseButton.Location = new System.Drawing.Point(564, 403);
             this.partsFolderBrowseButton.Name = "partsFolderBrowseButton";
             this.partsFolderBrowseButton.Size = new System.Drawing.Size(76, 27);
             this.partsFolderBrowseButton.TabIndex = 1;
@@ -224,8 +224,7 @@
             // 
             // partsFolderPathTextBox
             // 
-            this.partsFolderPathTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.partsFolderPathTextBox.Location = new System.Drawing.Point(111, 433);
+            this.partsFolderPathTextBox.Location = new System.Drawing.Point(111, 406);
             this.partsFolderPathTextBox.Name = "partsFolderPathTextBox";
             this.partsFolderPathTextBox.Size = new System.Drawing.Size(447, 20);
             this.partsFolderPathTextBox.TabIndex = 3;
@@ -233,11 +232,9 @@
             // 
             // partsFolderLabel
             // 
-            this.partsFolderLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.partsFolderLabel.AutoSize = true;
             this.partsFolderLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.partsFolderLabel.Location = new System.Drawing.Point(33, 435);
+            this.partsFolderLabel.Location = new System.Drawing.Point(33, 408);
             this.partsFolderLabel.Name = "partsFolderLabel";
             this.partsFolderLabel.Size = new System.Drawing.Size(72, 15);
             this.partsFolderLabel.TabIndex = 8;
@@ -247,7 +244,7 @@
             // 
             this.rendererLabel.AutoSize = true;
             this.rendererLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rendererLabel.Location = new System.Drawing.Point(421, 269);
+            this.rendererLabel.Location = new System.Drawing.Point(421, 264);
             this.rendererLabel.Name = "rendererLabel";
             this.rendererLabel.Size = new System.Drawing.Size(62, 15);
             this.rendererLabel.TabIndex = 9;
@@ -259,7 +256,7 @@
             this.rendererComboBox.Items.AddRange(new object[] {
             "BLENDER_RENDER",
             "CYCLES"});
-            this.rendererComboBox.Location = new System.Drawing.Point(489, 268);
+            this.rendererComboBox.Location = new System.Drawing.Point(489, 263);
             this.rendererComboBox.Name = "rendererComboBox";
             this.rendererComboBox.Size = new System.Drawing.Size(134, 21);
             this.rendererComboBox.TabIndex = 10;
@@ -267,9 +264,8 @@
             // 
             // progressLabel
             // 
-            this.progressLabel.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.progressLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.progressLabel.Location = new System.Drawing.Point(170, 323);
+            this.progressLabel.Location = new System.Drawing.Point(170, 313);
             this.progressLabel.Name = "progressLabel";
             this.progressLabel.Size = new System.Drawing.Size(53, 23);
             this.progressLabel.TabIndex = 11;
@@ -280,7 +276,7 @@
             // 
             // nextChunkButton
             // 
-            this.nextChunkButton.Location = new System.Drawing.Point(299, 264);
+            this.nextChunkButton.Location = new System.Drawing.Point(299, 259);
             this.nextChunkButton.Name = "nextChunkButton";
             this.nextChunkButton.Size = new System.Drawing.Size(74, 27);
             this.nextChunkButton.TabIndex = 12;
@@ -291,7 +287,7 @@
             // 
             // prevChunkButton
             // 
-            this.prevChunkButton.Location = new System.Drawing.Point(299, 231);
+            this.prevChunkButton.Location = new System.Drawing.Point(299, 226);
             this.prevChunkButton.Name = "prevChunkButton";
             this.prevChunkButton.Size = new System.Drawing.Size(74, 27);
             this.prevChunkButton.TabIndex = 12;
@@ -303,7 +299,7 @@
             // totalFrameCountLabel
             // 
             this.totalFrameCountLabel.AutoSize = true;
-            this.totalFrameCountLabel.Location = new System.Drawing.Point(179, 251);
+            this.totalFrameCountLabel.Location = new System.Drawing.Point(179, 246);
             this.totalFrameCountLabel.Name = "totalFrameCountLabel";
             this.totalFrameCountLabel.Size = new System.Drawing.Size(93, 13);
             this.totalFrameCountLabel.TabIndex = 13;
@@ -312,7 +308,7 @@
             // 
             // totalFrameCountNumericUpDown
             // 
-            this.totalFrameCountNumericUpDown.Location = new System.Drawing.Point(182, 271);
+            this.totalFrameCountNumericUpDown.Location = new System.Drawing.Point(182, 266);
             this.totalFrameCountNumericUpDown.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -336,14 +332,14 @@
             // processCountNumericUpDown
             // 
             this.processCountNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.processCountNumericUpDown.Location = new System.Drawing.Point(514, 234);
+            this.processCountNumericUpDown.Location = new System.Drawing.Point(514, 229);
             this.processCountNumericUpDown.Name = "processCountNumericUpDown";
             this.processCountNumericUpDown.Size = new System.Drawing.Size(44, 21);
             this.processCountNumericUpDown.TabIndex = 14;
             this.toolTip1.SetToolTip(this.processCountNumericUpDown, "N# of processes. For best results set acording to \r\nhow many logical cores you ha" +
         "ve.");
             this.processCountNumericUpDown.Value = new decimal(new int[] {
-            3,
+            4,
             0,
             0,
             0});
@@ -352,7 +348,7 @@
             // 
             this.processCountLabel.AutoSize = true;
             this.processCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.processCountLabel.Location = new System.Drawing.Point(421, 236);
+            this.processCountLabel.Location = new System.Drawing.Point(421, 231);
             this.processCountLabel.Name = "processCountLabel";
             this.processCountLabel.Size = new System.Drawing.Size(87, 15);
             this.processCountLabel.TabIndex = 15;
@@ -362,9 +358,8 @@
             // 
             // renderAllButton
             // 
-            this.renderAllButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.renderAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.5F, System.Drawing.FontStyle.Bold);
-            this.renderAllButton.Location = new System.Drawing.Point(470, 303);
+            this.renderAllButton.Location = new System.Drawing.Point(470, 293);
             this.renderAllButton.Name = "renderAllButton";
             this.renderAllButton.Size = new System.Drawing.Size(171, 39);
             this.renderAllButton.TabIndex = 0;
@@ -375,21 +370,19 @@
             // 
             // concatenatePartsButton
             // 
-            this.concatenatePartsButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.concatenatePartsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.concatenatePartsButton.Location = new System.Drawing.Point(501, 472);
+            this.concatenatePartsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.concatenatePartsButton.Location = new System.Drawing.Point(470, 436);
             this.concatenatePartsButton.Name = "concatenatePartsButton";
-            this.concatenatePartsButton.Size = new System.Drawing.Size(139, 38);
+            this.concatenatePartsButton.Size = new System.Drawing.Size(173, 39);
             this.concatenatePartsButton.TabIndex = 16;
-            this.concatenatePartsButton.Text = "Concatenate parts";
+            this.concatenatePartsButton.Text = "Concatenate parts *";
             this.toolTip1.SetToolTip(this.concatenatePartsButton, "Combine segments in FFmpeg");
             this.concatenatePartsButton.UseVisualStyleBackColor = true;
             this.concatenatePartsButton.Click += new System.EventHandler(this.concatenatePartsButton_Click);
             // 
             // ReadBlenderData
             // 
-            this.ReadBlenderData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.ReadBlenderData.Location = new System.Drawing.Point(566, 139);
+            this.ReadBlenderData.Location = new System.Drawing.Point(566, 134);
             this.ReadBlenderData.Name = "ReadBlenderData";
             this.ReadBlenderData.Size = new System.Drawing.Size(75, 63);
             this.ReadBlenderData.TabIndex = 17;
@@ -400,22 +393,20 @@
             // 
             // MixdownAudio
             // 
-            this.MixdownAudio.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.MixdownAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.25F);
-            this.MixdownAudio.Location = new System.Drawing.Point(384, 474);
+            this.MixdownAudio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MixdownAudio.Location = new System.Drawing.Point(177, 500);
             this.MixdownAudio.Name = "MixdownAudio";
-            this.MixdownAudio.Size = new System.Drawing.Size(99, 36);
+            this.MixdownAudio.Size = new System.Drawing.Size(99, 51);
             this.MixdownAudio.TabIndex = 18;
-            this.MixdownAudio.Text = "MixDown";
+            this.MixdownAudio.Text = "MixDown audio";
             this.MixdownAudio.UseVisualStyleBackColor = true;
             this.MixdownAudio.Click += new System.EventHandler(this.MixdownAudio_Click);
             // 
             // TotalTime
             // 
-            this.TotalTime.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.TotalTime.AutoSize = true;
             this.TotalTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F);
-            this.TotalTime.Location = new System.Drawing.Point(37, 326);
+            this.TotalTime.Location = new System.Drawing.Point(37, 316);
             this.TotalTime.Name = "TotalTime";
             this.TotalTime.Size = new System.Drawing.Size(127, 16);
             this.TotalTime.TabIndex = 19;
@@ -498,7 +489,7 @@
             this.isti115ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.isti115ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.isti115ToolStripMenuItem.Name = "isti115ToolStripMenuItem";
-            this.isti115ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.isti115ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.isti115ToolStripMenuItem.Text = "Isti115";
             this.isti115ToolStripMenuItem.Click += new System.EventHandler(this.isti115ToolStripMenuItem_Click);
             // 
@@ -507,7 +498,7 @@
             this.meTwentyFiveToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.meTwentyFiveToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.meTwentyFiveToolStripMenuItem.Name = "meTwentyFiveToolStripMenuItem";
-            this.meTwentyFiveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.meTwentyFiveToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.meTwentyFiveToolStripMenuItem.Text = "MeTwentyFive";
             this.meTwentyFiveToolStripMenuItem.Click += new System.EventHandler(this.meTwentyFiveToolStripMenuItem_Click);
             // 
@@ -516,7 +507,7 @@
             this.redRaptor93ToolStripMenuItem.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.redRaptor93ToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.redRaptor93ToolStripMenuItem.Name = "redRaptor93ToolStripMenuItem";
-            this.redRaptor93ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.redRaptor93ToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.redRaptor93ToolStripMenuItem.Text = "RedRaptor93";
             this.redRaptor93ToolStripMenuItem.Click += new System.EventHandler(this.redRaptor93ToolStripMenuItem_Click);
             // 
@@ -524,7 +515,7 @@
             // 
             this.jendabekToolStripMenuItem.ForeColor = System.Drawing.Color.CornflowerBlue;
             this.jendabekToolStripMenuItem.Name = "jendabekToolStripMenuItem";
-            this.jendabekToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.jendabekToolStripMenuItem.Size = new System.Drawing.Size(150, 22);
             this.jendabekToolStripMenuItem.Text = "jendabek";
             this.jendabekToolStripMenuItem.Click += new System.EventHandler(this.jendabekToolStripMenuItem_Click);
             // 
@@ -601,7 +592,7 @@
             this.infoPanel.Controls.Add(this.label1);
             this.infoPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.infoPanel.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.infoPanel.Location = new System.Drawing.Point(76, 111);
+            this.infoPanel.Location = new System.Drawing.Point(76, 106);
             this.infoPanel.Name = "infoPanel";
             this.infoPanel.Size = new System.Drawing.Size(482, 112);
             this.infoPanel.TabIndex = 22;
@@ -673,7 +664,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.5F, System.Drawing.FontStyle.Underline);
-            this.label2.Location = new System.Drawing.Point(28, 146);
+            this.label2.Location = new System.Drawing.Point(28, 141);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 16);
             this.label2.TabIndex = 23;
@@ -692,10 +683,9 @@
             // 
             // ajustOutDir
             // 
-            this.ajustOutDir.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ajustOutDir.AutoSize = true;
             this.ajustOutDir.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ajustOutDir.Location = new System.Drawing.Point(111, 474);
+            this.ajustOutDir.Location = new System.Drawing.Point(111, 447);
             this.ajustOutDir.Name = "ajustOutDir";
             this.ajustOutDir.Size = new System.Drawing.Size(155, 19);
             this.ajustOutDir.TabIndex = 27;
@@ -707,12 +697,10 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Underline);
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(33, 401);
+            this.label5.Location = new System.Drawing.Point(33, 374);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 20);
             this.label5.TabIndex = 24;
@@ -742,26 +730,110 @@
             // 
             // line2
             // 
-            this.line2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.line2.BackColor = System.Drawing.Color.Silver;
             this.line2.ForeColor = System.Drawing.Color.Silver;
-            this.line2.Location = new System.Drawing.Point(119, 411);
+            this.line2.Location = new System.Drawing.Point(119, 384);
             this.line2.Margin = new System.Windows.Forms.Padding(0);
             this.line2.Name = "line2";
             this.line2.Size = new System.Drawing.Size(517, 5);
             this.line2.TabIndex = 29;
             this.line2.Text = "███";
             // 
+            // mergeAudioButton
+            // 
+            this.mergeAudioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mergeAudioButton.Location = new System.Drawing.Point(314, 500);
+            this.mergeAudioButton.Name = "mergeAudioButton";
+            this.mergeAudioButton.Size = new System.Drawing.Size(93, 51);
+            this.mergeAudioButton.TabIndex = 30;
+            this.mergeAudioButton.Text = "Merge audio *";
+            this.mergeAudioButton.UseVisualStyleBackColor = true;
+            this.mergeAudioButton.Click += new System.EventHandler(this.mergeAudioButton_Click);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F, System.Drawing.FontStyle.Underline);
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label7.Location = new System.Drawing.Point(33, 468);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(69, 20);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "3. Audio";
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.Color.Silver;
+            this.label8.ForeColor = System.Drawing.Color.Silver;
+            this.label8.Location = new System.Drawing.Point(119, 478);
+            this.label8.Margin = new System.Windows.Forms.Padding(0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(517, 5);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "███";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(283, 516);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(27, 18);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "-->";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(413, 490);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(234, 64);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "This button will replace the existing\r\naudio in concat_output.mp4 with\r\nthe mixed" +
+    " down ac3 track and write the\r\nresult to audio_output.mp4";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(9, 490);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(162, 64);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "This button will export only\r\nthe audio track from the\r\nblend file into a\r\nsepara" +
+    "te ac3 file.";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(58, 571);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(532, 36);
+            this.label12.TabIndex = 32;
+            this.label12.Text = "*: A console window may pop up asking for confirmation if the file already exists" +
+    ".\r\nIn this case type in the letter y and press Enter if you wish to overwrite it" +
+    ".";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // MainForm
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(655, 522);
+            this.ClientSize = new System.Drawing.Size(655, 616);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.mergeAudioButton);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.line2);
             this.Controls.Add(this.line);
             this.Controls.Add(this.ajustOutDir);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label2);
@@ -876,6 +948,13 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem deleteJsonToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cMDArgsToolStripMenuItem;
+        private System.Windows.Forms.Button mergeAudioButton;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }
 
