@@ -1,5 +1,7 @@
 # Blender Render Controller
 
+Original post by me on Blender StackExchange: http://blender.stackexchange.com/a/44906/20611
+
 ## Thanks to
 
 * [MeTwentyFive](https://github.com/MeTwentyFive/BlenderRenderController) for the initial update.
