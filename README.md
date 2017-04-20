@@ -58,3 +58,11 @@ Really shows the importance of those extra cores huh? Even if you don't use Blen
 
 6. That's it! Hopefully you found this useful!  
 If so, don't forget to star the repository and upvote the [StackExchange answer] (http://blender.stackexchange.com/a/44906/20611) so more people can find it! :)
+---
+### Cross-platform alternative
+Mikeycal Meyers wrote his own python script as a cross-platform solution for the problem.  
+You can find his explanation about it here:   
+https://youtu.be/rgwP5L1bICk  
+and the actual project here:  
+https://github.com/mikeycal/the-video-editors-render-script-for-blender  
+Make sure to check his work out as well, and help him improve it if you know some python! ;)
