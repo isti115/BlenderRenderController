@@ -2,6 +2,11 @@
 
 Original post by me on Blender StackExchange: http://blender.stackexchange.com/a/44906/20611
 
+### Warning! This repository is not really well maintained, I recommend checking out mikeycal's script instead for a more active project:
+https://github.com/mikeycal/the-video-editors-render-script-for-blender
+
+If you would still like to use this app instead, I've implemented a quick fix in v0.5 for blender 2.8 (tested on the 2.83 LTS release) to get the rendering engine from the project `.blend` file, as in 2.8 the `BLENDER_RENDERER` was removed and `EEVEE` was introduced.
+
 ## Thanks to
 
 * [MeTwentyFive](https://github.com/MeTwentyFive/BlenderRenderController) for the initial update.
