@@ -22,6 +22,9 @@ startFrame = bpy.data.scenes[ActiveScene].frame_start
 endFrame   = bpy.data.scenes[ActiveScene].frame_end
 outputPath = bpy.data.scenes[ActiveScene].render.filepath
 
+# get rendering engine
+renderingEngine = bpy.context.scene.render.engine
+
 """
 Error code table:
  0: no errors
@@ -55,7 +58,8 @@ altdir = str(outputPath).rpartition('\\')[:-1][0]
 #print( "end: %s\n" % (endFrame) )
 
 data = { 'ProjectName': projName, 'StartFrame': startFrame, 'EndFrame': endFrame, 'OutputDirectory': outputPath,  
-        'NumScenes': N_of_Scenes, 'ActiveScene': ActiveScene, 'AltDir': altdir, 'ErrorCode': errorcode };
+        'NumScenes': N_of_Scenes, 'ActiveScene': ActiveScene, 'AltDir': altdir, 'ErrorCode': errorcode,
+        'RenderingEngine': renderingEngine };
 
 jsonData = json.dumps(data, indent=4, skipkeys=True, sort_keys=True);
 

@@ -45,6 +45,7 @@ namespace BlenderRenderController
             public string AltDir;
             public int ErrorCode;
             //public int SegFrame = 1000;
+            public string RenderingEngine;
         }
 
 
@@ -316,7 +317,7 @@ namespace BlenderRenderController
 
         public int compareParts(string a, string b)
         {
-            Regex pattern = new Regex(@"-(.*)\.(mp4|avi)");
+            Regex pattern = new Regex(@".*-(.*)\.(mp4|avi)");
 
             int aEnd = Convert.ToInt32(pattern.Match(a).Groups[1].Value);
             int bEnd = Convert.ToInt32(pattern.Match(b).Groups[1].Value);
@@ -413,6 +414,8 @@ namespace BlenderRenderController
 
                 startFrameNumericUpDown.Value = blendData.StartFrame;
                 totalFrameCountNumericUpDown.Value = blendData.EndFrame;
+
+                rendererComboBox.Text = blendData.RenderingEngine;
 
                 //endFrameNumericUpDown.Value = startFrameNumericUpDown.Value + endFrameNumericUpDown.Value;
 

@@ -254,13 +254,15 @@
             // 
             this.rendererComboBox.FormattingEnabled = true;
             this.rendererComboBox.Items.AddRange(new object[] {
+            "BLENDER_EEVEE",
+            "BLENDER_WORKBENCH",
             "BLENDER_RENDER",
             "CYCLES"});
             this.rendererComboBox.Location = new System.Drawing.Point(489, 263);
             this.rendererComboBox.Name = "rendererComboBox";
             this.rendererComboBox.Size = new System.Drawing.Size(134, 21);
             this.rendererComboBox.TabIndex = 10;
-            this.rendererComboBox.Text = "BLENDER_RENDER";
+            this.rendererComboBox.Text = "";
             // 
             // progressLabel
             // 
