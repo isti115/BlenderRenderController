@@ -2,6 +2,14 @@
 
 Original post by me on Blender StackExchange: http://blender.stackexchange.com/a/44906/20611
 
+## UPDATE:
+
+This program has been more or less deprecated, since **multithreaded rendering is now natively implemented in blender for the video sequence editor**, but since this project allows a more granular approach for setting up chunks and the number of threads, it could still be useful for:
+* Rendering on multiple machines and stitching the results together afterwards (for which copying them into a single folder and using this program's functionality is enough)
+* Rendering in the background without using up all the resources of the computer
+
+Because of these I will still leave it up here, but won't necessarily provide updates / support for it. The latest version I have tested with is Blender 2.9, for which the installation path has changed a little bit, but after updating the environmental variables it seems to work perfectly fine.
+
 ### Warning! This repository is not really well maintained, I recommend checking out mikeycal's script instead for a more active project:
 https://github.com/mikeycal/the-video-editors-render-script-for-blender
 
@@ -62,7 +70,7 @@ Really shows the importance of those extra cores huh? Even if you don't use Blen
 5. If you find that the sound glitches at the concatenation points you should export the audio separately and then merge it with the video file afterwards with the labeled buttons in section __3. Audio__ of the program.
 
 6. That's it! Hopefully you found this useful!  
-If so, don't forget to star the repository and upvote the [StackExchange answer] (http://blender.stackexchange.com/a/44906/20611) so more people can find it! :)
+If so, don't forget to star the repository and upvote the [StackExchange answer](http://blender.stackexchange.com/a/44906/20611) so more people can find it! :)
 ---
 ### Cross-platform alternative
 Mikeycal Meyers wrote his own python script as a cross-platform solution for the problem.  
